@@ -1,8 +1,12 @@
-package com.AwesomeGame.4.desktop;
+package com.AwesomeGame;
+
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
+
+
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.AwesomeGame.4.AwesomeGame;
+import com.AwesomeGame.AwesomeGame;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
