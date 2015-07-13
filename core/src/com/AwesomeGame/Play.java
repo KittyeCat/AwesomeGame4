@@ -4,26 +4,38 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 /**
  * Created by Basil on 13/07/2015.
  */
 public class Play extends ScreenAdapter {
     protected AwesomeGame game;
-    protected OrthographicCamera camera;
 
-    public static final float WOLRD_WIDTH = 25;
-    public static final float WORLD_HEIGHT = 25;
-
-    private SpriteBatch batch;
+    private TiledMap map;
+    private OrthogonalTiledMapRenderer renderer;
+    private OrthographicCamera camera;
+    private Batch batch;
 
     private Player player;
 
     public Play(AwesomeGame game) {
         this.game = game;
         camera = new OrthographicCamera(AwesomeGame.WIDTH, AwesomeGame.HEIGHT);
-        batch = new SpriteBatch();
+        camera = new OrthographicCamera();
+        player = new Player(new Sprite(Assets.player));
+    }
+
+    @Override
+    public void show() {
+        TmxMapLoader loader = new TmxMapLoader();
+        map = loader.load(Assets.getMap());
+        renderer = new OrthogonalTiledMapRenderer(map);
+        batch = renderer.getBatch();
     }
 
     @Override
@@ -41,9 +53,19 @@ public class Play extends ScreenAdapter {
 
         camera.update();
         batch.setProjectionMatrix(camera.combined);
+        renderer.setView(camera);
+        renderer.render();
         batch.begin();
-        //Draw stuff here
+        player.draw(batch);
         batch.end();
     }
+
+    @Override
+    public void dispose() {
+
+        map.dispose();
+        renderer.dispose();
+    }
+
 
 }

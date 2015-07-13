@@ -1,7 +1,5 @@
 package com.AwesomeGame;
 
-
-import com.AwesomeGame.Assets;
 import com.badlogic.gdx.Game;
 
 public class AwesomeGame extends Game {

@@ -1,5 +1,6 @@
 package com.AwesomeGame;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 /**
@@ -7,5 +8,11 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
  */
 public class Player extends Sprite{
 
+    public Player (Sprite sprite) {
+        super(sprite);
+    }
 
+    public void draw(Batch batch) {
+        super.draw(batch);
+    }
 }
